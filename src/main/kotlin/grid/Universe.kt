@@ -1,5 +1,7 @@
 package grid
 
+import strategy.cell.InitialCell
+
 class Universe {
 
     companion object {
@@ -10,9 +12,12 @@ class Universe {
 
     private val grid: Array<Array<Cell>>
 
-    constructor(gridSize: GridSize) {
+    constructor(gridSize: GridSize, initialCells: List<InitialCell>) {
         grid = Array(gridSize.width, {i -> Array<Cell>(gridSize.height,{i -> Universe.EMPTY_CELL }) });
+        createInitialCells(initialCells);
+    }
 
+    private fun createInitialCells(initialCells: List<InitialCell>) {
 
     }
 
