@@ -1,6 +1,7 @@
 package grid
 
 import strategy.cell.InitialCell
+import strategy.vitality.VitalityStrategy
 
 class Universe {
 
@@ -12,11 +13,11 @@ class Universe {
 
     private val grid: Array<Array<Cell>>
 
-    private val gridSpanshot: Array<Array<Cell>>
+    private val gridSnapshot: Array<Array<Cell>>
 
     constructor(gridSize: GridSize, initialCells: List<InitialCell>) {
         grid = Array(gridSize.width) { Array<Cell>(gridSize.height) { Universe.EMPTY_CELL } };
-        gridSpanshot = Array(gridSize.width) { Array<Cell>(gridSize.height) { Universe.EMPTY_CELL } };
+        gridSnapshot = Array(gridSize.width) { Array<Cell>(gridSize.height) { Universe.EMPTY_CELL } };
         createInitialCells(initialCells);
     }
 
@@ -26,7 +27,15 @@ class Universe {
     }
 
     fun getGridSnapshot(): GridSnapshot {
-        return GridSnapshot(gridSpanshot);
+        return GridSnapshot(gridSnapshot);
+    }
+
+    fun isEmpty(): Boolean {
+        return false
+    }
+
+    fun nextTurn(vitalityStrategy: VitalityStrategy) {
+
     }
 
 }

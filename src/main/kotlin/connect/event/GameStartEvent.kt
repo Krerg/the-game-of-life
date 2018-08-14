@@ -1,5 +1,7 @@
 package connect.event
 
-class GameStartEvent {
+import grid.GridSnapshot
+
+class GameStartEvent(gridSnapshot: GridSnapshot) {
 
 }

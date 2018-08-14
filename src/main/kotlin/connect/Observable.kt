@@ -1,5 +1,7 @@
 package connect
 
+import connect.event.EndTurnEvent
+import connect.event.GameEndEvent
 import connect.event.GameStartEvent
 import connect.listener.EventListener
 import java.util.*
@@ -16,6 +18,12 @@ class Observable {
         listeners.forEach { it.gameStart(gameStartEvent) }
     }
 
+    fun fireEndTurnEvent(endTurnEvent: EndTurnEvent) {
+        listeners.forEach { it.endTurn(endTurnEvent) }
+    }
 
+    fun fireGameEndEvent(gameEndEvent: GameEndEvent) {
+        listeners.forEach { it.gameEnd(gameEndEvent) }
+    }
 
 }

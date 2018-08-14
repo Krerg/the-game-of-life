@@ -1,5 +1,7 @@
 package connect.event
 
-class EndTurnEvent {
+import grid.GridSnapshot
+
+class EndTurnEvent(gridSnapshot: GridSnapshot) {
 
 }
