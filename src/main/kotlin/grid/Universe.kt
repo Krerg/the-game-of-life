@@ -1,13 +1,16 @@
 package grid
 
 import strategy.cell.InitialCell
+import strategy.vitality.CellVitality
+import strategy.vitality.CellVitalityState
+import java.util.function.Consumer
 import strategy.vitality.VitalityStrategy
 
 class Universe {
 
     companion object {
 
-        public val EMPTY_CELL = Cell();
+        val EMPTY_CELL = Cell(-1,-1);
 
     }
 
@@ -26,6 +29,10 @@ class Universe {
                 GameOfLife.GRID_SIZE!!.width, GameOfLife.GRID_SIZE!!.height);
     }
 
+    fun forEachCell(func: Consumer<Cell>) {
+        grid.forEach { it.forEach { func.accept(it) } }
+    }
+
     fun getGridSnapshot(): GridSnapshot {
         return GridSnapshot(gridSnapshot);
     }
@@ -34,8 +41,8 @@ class Universe {
         return false
     }
 
-    fun nextTurn(vitalityStrategy: VitalityStrategy) {
-
+    fun nextTurn(vitalityStrategy: VitalityStrategy): List<CellVitality> {
+        return List(0, {CellVitality(CellVitalityState.BORN)});
     }
 
 }

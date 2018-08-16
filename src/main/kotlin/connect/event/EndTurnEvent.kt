@@ -1,7 +1,7 @@
 package connect.event
 
-import grid.GridSnapshot
+import strategy.vitality.CellVitality
 
-class EndTurnEvent(gridSnapshot: GridSnapshot) {
+class EndTurnEvent(changes: List<CellVitality>) {
 
 }
