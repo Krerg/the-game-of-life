@@ -10,7 +10,7 @@ class Universe {
 
     companion object {
 
-        val EMPTY_CELL = Cell(-1,-1);
+        val EMPTY_CELL = Cell(-1,-1, CellVitalityState.DEAD);
 
     }
 
@@ -34,7 +34,12 @@ class Universe {
     }
 
     fun getGridSnapshot(): GridSnapshot {
-        return GridSnapshot(gridSnapshot);
+        prepareSnapshot()
+        return GridSnapshot(gridSnapshot)
+    }
+
+    private fun prepareSnapshot() {
+        grid.forEachIndexed { index1 ,array -> array.forEachIndexed { index2, cell -> gridSnapshot[index1][index2] = cell } }
     }
 
     fun isEmpty(): Boolean {
@@ -42,7 +47,7 @@ class Universe {
     }
 
     fun nextTurn(vitalityStrategy: VitalityStrategy): List<CellVitality> {
-        return List(0, {CellVitality(CellVitalityState.BORN)});
+        return List(0, {CellVitality(CellVitalityState.BORN)})
     }
 
 }

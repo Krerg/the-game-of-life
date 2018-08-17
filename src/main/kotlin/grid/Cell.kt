@@ -1,5 +1,7 @@
 package grid
 
-class Cell(val x: Int, val y: Int) {
+import strategy.vitality.CellVitalityState
+
+class Cell(val x: Int, val y: Int, val state: CellVitalityState) {
 
 }
