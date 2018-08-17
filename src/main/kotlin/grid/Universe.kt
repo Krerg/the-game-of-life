@@ -10,7 +10,7 @@ class Universe {
 
     companion object {
 
-        val EMPTY_CELL = Cell(-1,-1, CellVitalityState.DEAD);
+        val EMPTY_CELL = Cell(-1,-1);
 
     }
 

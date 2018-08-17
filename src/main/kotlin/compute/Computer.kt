@@ -41,8 +41,6 @@ class Computer {
         observable.fireGameEndEvent(GameEndEvent(universe.getGridSnapshot()))
     }
 
-
-
     private fun createUniverse(gridSize: GridSize, initialCellArrangementStrategy: InitialCellArrangementStrategy): Universe {
         val initialCells = initialCellArrangementStrategy.getInitialCells(gridSize.width, gridSize.height)
         return Universe(gridSize, initialCells)
