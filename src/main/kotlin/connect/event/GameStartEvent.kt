@@ -2,6 +2,6 @@ package connect.event
 
 import grid.GridSnapshot
 
-class GameStartEvent(gridSnapshot: GridSnapshot) {
+class GameStartEvent(val gridSnapshot: GridSnapshot) {
 
 }

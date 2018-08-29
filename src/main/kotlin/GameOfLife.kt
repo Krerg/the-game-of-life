@@ -2,6 +2,7 @@ import compute.Computer
 import connect.Observable
 import connect.listener.EventListener
 import grid.GridSize
+import grid.GridSnapshot
 import strategy.cell.InitialCellArrangementStrategy
 import strategy.cell.impl.RandomInitialCellArrangementStrategy
 import strategy.vitality.VitalityStrategy
@@ -40,22 +41,29 @@ class GameOfLife  {
         controller = GameOfLifeController(computer);
     }
 
+    fun getController(): GameOfLifeController {
+        return controller;
+    }
 
+    class GameOfLifeController(private val computer: Computer) {
+
+        fun start() {
+            computer.start()
+        }
+
+        fun nextTurn() {
+            computer.nextTurn()
+        }
+
+        fun registerListener(eventListener: EventListener) {
+            computer.registerListener(eventListener)
+        }
+
+        fun getSnapshot(): GridSnapshot {
+            return computer.getSnapshot();
+        }
+
+    }
 
 }
 
-class GameOfLifeController(val computer: Computer) {
-
-    fun start() {
-        computer.start()
-    }
-
-    fun nextTurn() {
-        computer.nextTurn()
-    }
-
-    fun registerListener(eventListener: EventListener) {
-        computer.registerListener(eventListener)
-    }
-
-}

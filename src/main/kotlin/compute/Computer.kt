@@ -6,6 +6,7 @@ import connect.event.GameEndEvent
 import connect.event.GameStartEvent
 import connect.listener.EventListener
 import grid.GridSize
+import grid.GridSnapshot
 import grid.Universe
 import strategy.cell.InitialCellArrangementStrategy
 
@@ -35,6 +36,10 @@ class Computer {
 
     fun registerListener(eventListener: EventListener) {
         observable.registerListener(eventListener);
+    }
+
+    fun getSnapshot(): GridSnapshot {
+        return universe.getGridSnapshot();
     }
 
     private fun endGame() {

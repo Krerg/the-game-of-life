@@ -21,7 +21,7 @@ class VitalityUtils {
         }
 
         private fun addIfExists(x: Int, y: Int, gridSnapshot: GridSnapshot, list: MutableList<Cell>) {
-            if (x<0 || y<0) {
+            if (x<0 || y<0 || x>gridSnapshot.grid.size-1 || y>gridSnapshot.grid[0].size-1) {
                 return
             }
             if (gridSnapshot.grid[x][y] != Universe.EMPTY_CELL) {

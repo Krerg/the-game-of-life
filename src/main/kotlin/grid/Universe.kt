@@ -25,8 +25,7 @@ class Universe {
     }
 
     private fun createInitialCells(initialCells: List<InitialCell>) {
-        val initialCells = GameOfLife.INITIAL_CELL_ARRANGEMENT_STRATEGY?.getInitialCells(
-                GameOfLife.GRID_SIZE!!.width, GameOfLife.GRID_SIZE!!.height);
+        initialCells.forEach{ cell -> grid[cell.x][cell.y]=Cell(cell.x, cell.y);}
     }
 
     fun forEachCell(func: Consumer<Cell>) {
@@ -47,6 +46,20 @@ class Universe {
     }
 
     fun nextTurn(vitalityStrategy: VitalityStrategy): List<CellVitality> {
+        val gridSnapshot = getGridSnapshot();
+        var resultList = mutableListOf<CellVitality>()
+        grid.forEachIndexed { index, arrayOfCells ->
+            arrayOfCells.forEachIndexed { index2, cell ->
+                val resultCell = vitalityStrategy.apply(cell, gridSnapshot)
+                if(resultCell.cellVitalityState == CellVitalityState.BORN) {
+                    grid[index][index2] = Cell(index, index2)
+                    resultList.add(resultCell)
+                } else if(resultCell.cellVitalityState == CellVitalityState.DEAD) {
+                    grid[index][index2] = Universe.EMPTY_CELL
+                    resultList.add(resultCell)
+                }
+            }
+        }
         return List(0, {CellVitality(CellVitalityState.BORN)})
     }
 
